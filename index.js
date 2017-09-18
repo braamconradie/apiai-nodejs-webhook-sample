@@ -58,7 +58,7 @@ app.post('/webhook', function (req, res) {
                                 });
                                 }
                                 http.request(options, callback).end();
-  var webhookReply = 'Hey Braam, a few moments ago your power consumption was " + speech + "Watts" ;
+  var webhookReply = "Hey Braam, a few moments ago your power consumption was " + speech + "Watts" ;
   
   // var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.';
   
