@@ -1,11 +1,11 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-app.use(bodyParser.json())
-app.set('port', (process.env.PORT || 5000))
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+app.use(bodyParser.json());
+app.set('port', (process.env.PORT || 5000));
 
-const REQUIRE_AUTH = true
-const AUTH_TOKEN = 'an-example-token'
+const REQUIRE_AUTH = true;
+const AUTH_TOKEN = 'an-example-token';
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -32,12 +32,15 @@ app.post('/webhook', function (req, res) {
   }
 
   // the value of Action from api.ai is stored in req.body.result.action
-  console.log('* Received action -- %s', req.body.result.action)
+  console.log('* Received action -- %s', req.body.result.action);
 
   // parameters are stored in req.body.result.parameters
-  var userName = req.body.result.parameters['given-name']
-  var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.'
-
+  var userName = req.body.result.parameters['given-name'];
+  var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.';
+  
+  // override
+  var webhookReply = "hello van die onderwereld";
+  
   // the most basic response
   res.status(200).json({
     source: 'webhook',
