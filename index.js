@@ -36,7 +36,33 @@ app.post('/webhook', function (req, res) {
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name'];
-  var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.';
+  
+                                  var http = require('http');
+                                var options = {
+                                  host: 'dweet.io',
+                                  path: '/get/latest/dweet/for/braamwatts'
+                                };
+                                callback = function(response) {
+                                  var str = '';
+                                  response.on('data', function (chunk) {
+                                  str += chunk;
+                                  });
+                                  response.on('end', function () {
+
+                                var myJSON = JSON.parse(str);
+                                // console.log(myJSON);
+                                  var tweedeobj = myJSON["with"];
+                                  //console.log(tweedeobj[0]["content"]["totalkrag"]);
+                                  speech = tweedeobj[0]["content"]["totalkrag"].toString();
+                                console.log(speech);
+                                });
+                                }
+                                http.request(options, callback).end();
+  var webhookReply = speech;
+  
+  // var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.';
+  
+  
   
   // override
   // var webhookReply = "hello van die onderwereld";
