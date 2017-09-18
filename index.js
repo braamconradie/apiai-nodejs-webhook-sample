@@ -39,7 +39,7 @@ app.post('/webhook', function (req, res) {
   var webhookReply = 'Hello ' + userName + '! Welcome from the webhook.';
   
   // override
-  var webhookReply = "hello van die onderwereld";
+  // var webhookReply = "hello van die onderwereld";
   
   // the most basic response
   res.status(200).json({
